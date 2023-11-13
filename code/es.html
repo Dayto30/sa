@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="imaage/png" href="../img/logo1.png"> 
+    <title>Ingresar Datos de Tarjeta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow: hidden; /* Evitar el desplazamiento vertical al mostrar el mensaje */
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #424242;
+            color: #fff;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        form {
+            margin-top: 120px; /* Ajustado el margen superior del formulario para centrarlo */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        .boton {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #424242;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .mensaje {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #4caf50;
+            color: #fff;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="../img/d.png" alt="Logo Gallery CDMX">
+        </div>
+    </header>
+
+    <form onsubmit="return mostrarMensaje()">
+        <label for="tarjeta">Número de Tarjeta:</label>
+        <input type="text" id="tarjeta" name="tarjeta" pattern="[0-9]{16}" placeholder="16 dígitos" required>
+
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" pattern="[0-9]{3}" placeholder="3 dígitos" required>
+
+        <label for="direccion">Dirección de Facturación:</label>
+        <input type="text" id="direccion" name="direccion" required>
+
+        <label for="expiracion">Fecha de Vencimiento:</label>
+        <div style="display: flex;">
+            <input type="text" id="mes" name="mes" pattern="(0[1-9]|1[0-2])" placeholder="MM" required>
+            <span style="margin: 0 5px;">/</span>
+            <input type="text" id="ano" name="ano" pattern="[0-9]{2}" placeholder="YY" required>
+        </div>
+
+        <label for="tipo">Tipo de Tarjeta:</label>
+        <select id="tipo" name="tipo" required>
+            <option value="credito">Crédito</option>
+            <option value="debito">Débito</option>
+        </select>
+
+        <button type="submit" class="boton">Continuar</button>
+
+        <div id="mensaje" class="mensaje">Compra exitosa</div>
+    </form>
+
+    <script>
+        function mostrarMensaje() {
+            var mensajeDiv = document.getElementById('mensaje');
+            mensajeDiv.style.display = 'block';
+
+            // Redirigir a otra página después de mostrar el mensaje
+            setTimeout(function () {
+                window.location.href = '../index.html';
+            }, 2000); // Redirigir después de 2 segundos (puedes ajustar este tiempo)
+
+            // Para evitar el envío real del formulario
+            return false;
+        }
+    </script>
+</body>
+
+</html>
